@@ -1,6 +1,6 @@
 # ORIC DRAM Fault Finder
 
-A diagnostic ROM for identifying faulty DRAM chips in ORIC Atmos computers.
+A diagnostic ROM for identifying faulty DRAM chips in ORIC computers.
 
 ![ORIC Atmos](https://img.shields.io/badge/Platform-ORIC%20Atmos-blue)
 ![License](https://img.shields.io/badge/License-MIT-green)
@@ -9,11 +9,11 @@ A diagnostic ROM for identifying faulty DRAM chips in ORIC Atmos computers.
 
 The ORIC 48K uses eight 4164 DRAM chips (64Kbit × 1). Each chip handles one bit of the 8-bit data bus. So when you write a byte to memory, each of the 8 chips stores just one bit of that byte.
 
-Sounds simple enough. But a chip might work fine when cold, pass a quick test, then start playing up when things warm up. Or it might only fail under specific patterns where adjacent bits interact. Fun times.
+Sounds simple enough. But a chip might work fine when cold, pass a quick test, then start playing up when things warm up. Or it might only fail under specific patterns where adjacent bits interact. This is happening for me...fun times.
 
 When a single chip fails, it causes errors on a specific data bit. In theory, this allows identification of the faulty IC under work. A "walking bit" test - where we test one bit at a time ($01, $02, $04... $80) - can isolate which chip is misbehaving.
 
-If multiple bits fail together? That's trickier. Could be multiple bad chips? Or points to something else - data bus issues, timing problems, dodgy connections. The test tries to distinguish between these cases.
+If multiple bits fail together? That's trickier. Could be multiple bad chips? Or points to something else - data bus issues, timing problems, dodgy connections. The tests try to distinguish between these cases.
 
 That's the theory anyway! 
 
@@ -25,6 +25,9 @@ That's the theory anyway!
 - **Runs test patterns** - Walking bit, AA55, FF00, and address pattern tests
 - **Detailed fault display** - Shows address, expected/actual values, binary diff, and test name and potential failure
 
+## Warning
+
+Old computers break when you stress them. Please don't leave this running. On this basis I would not recommend running these tests for long periods on those that work. If it ain't broke don't fix it!
 
 ## DRAM Chip Mapping
 
@@ -110,9 +113,9 @@ Since this runs from ROM, it can test almost all RAM:
 
 | Range | Size | Status |
 |-------|------|--------|
-| $0010-$00FF | 240 bytes | ✅ Zero page (tested) |
-| $0200-$02FF | 256 bytes | ✅ Page 2 (tested) |
-| $0400-$B3FF | 44.75 KB | ✅ Main RAM (tested) |
+| $0010-$00FF | 240 bytes | Zero page (tested) |
+| $0200-$02FF | 256 bytes | Page 2 (tested) |
+| $0400-$B3FF | 44.75 KB | Main RAM (tested) |
 | **Total** | **~45.25 KB** | **Tested** |
 
 Not tested (required by ROM or hardware):
