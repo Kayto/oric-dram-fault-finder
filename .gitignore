@@ -1,0 +1,13 @@
+# Ignore build artifacts
+*.o
+*.zip
+*.7z
+*.rar
+
+# Keep the pre-built ROM file
+!bin/*.bin
+
+# Editor files
+*.swp
+*~
+.vscode/

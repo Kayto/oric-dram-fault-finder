@@ -1,0 +1,11 @@
+{
+    "ca65": "",
+    "ld65": "",
+    "docker_image": "",
+    
+    "_comment": "Set paths to ca65/ld65, OR set docker_image to use Docker instead.",
+    "_example_native_windows": "C:\\cc65\\bin\\ca65.exe",
+    "_example_native_mac": "/opt/homebrew/bin/ca65",
+    "_example_native_linux": "/usr/bin/ca65",
+    "_example_docker": "Set docker_image to: dawidbuchwald/cc65-tools-make"
+}
